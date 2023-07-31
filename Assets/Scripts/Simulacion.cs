@@ -1,0 +1,94 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
+
+public class Simulacion : MonoBehaviour
+{
+    double[,] TemperaturasSimulacion;
+    public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion,
+                    TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
+                    CaudalSalida, IrradianciaSalida;
+    public double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
+                    TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
+                    minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
+    int j, i, n, k, Ntotal, contador10;
+
+    void Awake()
+    {
+        Debug.Log("Simulacion ha empezado");
+        Time.fixedDeltaTime = 0.025f;
+
+        /*
+        // Se pone en marcha el sistema:
+        Fresnel.Setup();
+
+        TemperaturaFluidoSimulacion = Fresnel.Tf;
+        TemperaturaMetalSimulacion  = Fresnel.Tm;
+
+        // A hora y minuto de la simulación se le dan los valores del primer elemento de las muestras,
+        // porque a partir del primer paso, el mismo bucle de simulación las calculará.
+        minutoSimulacion            = Fresnel.minuto1[0];
+        // Atencion al espíritu o la intención de la declaración en el modelo original: no es lo que estamos
+        // haciendo: (original:) x = find(abs(hora-horacomienzo)==min(abs(hora-horacomienzo))); hora = hora(x);
+        horaSimulacion              = Fresnel.hora1[0];
+
+        EficienciaMediaSimulacion = Fresnel.Eficienciamedia;
+        j = 0;
+        k = Fresnel.k1; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
+
+        Ntotal = (int)Fresnel.Ntotal;
+
+        TemperaturaSalidaFluido     = new double[Ntotal];
+        TemperaturaTuberia          = new double[Ntotal];
+        TemperaturaEntradaFluido    = new double[Ntotal];
+        CaudalSalida                = new double[Ntotal];
+        IrradianciaSalida           = new double[Ntotal];
+
+        contador10 = 1;
+        */
+    }
+
+    void FixedUpdate()
+    {
+        /*TemperaturaFluidoSimulacion[0]  = Fresnel.Tentrada1[j]; //  Inicializamos el primer valor (la temperatura de entrada del fluido)
+        IrradianciaSimulacion           = Fresnel.I1[j];        //  Es constante para todo el sistema
+        TemperaturaAmbienteSimulacion   = Fresnel.Tambiente1[j];//  Es constante para todo el sistema
+        qSimulacion                     = Fresnel.caudal1[j];   //  Es constante para toda la tubería
+
+        PorcentajeTuboSimulacion = 1;
+        // Si la temperatura de salida es mayor que 180ºC
+        if(TemperaturaFluidoSimulacion[Fresnel.numeroPartesDiscretasTuboCaptador] > (double)180) PorcentajeTuboSimulacion = 0;
+
+        if(qSimulacion < 0) qSimulacion = 0;
+
+        if(j % Fresnel.tactualizacion == 0)
+        {
+            minutoSimulacion = minutoSimulacion + (double)10 / (double)60;
+            if(minutoSimulacion >= (double)60)
+            {
+                horaSimulacion++;
+                if(horaSimulacion == 24) horaSimulacion = 0;
+                minutoSimulacion -= (double)60;
+            }
+
+            TiempoSolarSimulacion = FresnelSupport.CalculoHoraSolar(horaSimulacion, minutoSimulacion, Fresnel.mes1, Fresnel.angulodiario1);
+
+            FactorSombraSimulacion = FresnelSupport.eficienciaGeoYSombras(Fresnel.angulodiario1, TiempoSolarSimulacion);
+        }*/
+
+        /*TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
+                                                                    TemperaturaFluidoSimulacion,
+                                                                    TemperaturaAmbienteSimulacion,
+                                                                    IrradianciaSimulacion,
+                                                                    FactorSombraSimulacion,
+                                                                    qSimulacion,
+                                                                    EficienciaMediaSimulacion,
+                                                                    PorcentajeTuboSimulacion);*/
+
+        
+
+        j++;
+    }
+}
