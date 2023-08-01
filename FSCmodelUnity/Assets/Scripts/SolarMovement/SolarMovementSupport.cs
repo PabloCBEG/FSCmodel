@@ -75,7 +75,7 @@ public class SolarMovementSupport : MonoBehaviour
         
         if(anguloSol == 90) flagSol = 1;
 
-        return anguloEspejo;
+        return -anguloEspejo;
     }
 
 }
