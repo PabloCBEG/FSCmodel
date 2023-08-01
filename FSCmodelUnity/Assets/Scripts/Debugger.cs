@@ -1,4 +1,4 @@
-
+/*
 using UnityEngine;
 using System;
 using System.Linq;
@@ -8,18 +8,31 @@ using System.Collections.Generic;
 
 public class Debugger : MonoBehaviour
 {
-    private string[,] DatosCSV;
-    private double[] Factorsombra1, Porcentajetubo1, TactualFluido1, TactualMetal1;
+    private static string[,] DatosCSV;
+    private static double[] Factorsombra1, Porcentajetubo1, TactualFluido1, TactualMetal1;
+    static int counter;
+    static double[,] TemperaturasSimulacion;
+    private static string[] FactorsombraCSV, PorcentajetuboCSV, TactualFluidoCSV, TactualMetalCSV;
 
     void Start()
     {
         Fresnel.Setup();
         ObtenerDatos();
+        counter = 0;
     }
 
     void FixedUpdate()
     {
-        
+        TemperaturasSimulacion = CalculoTemperatura( TactualMetal1[counter],
+                                                                    TactualFluido1[counter],
+                                                                    Fresnel.Tambiente1[counter],
+                                                                    Fresnel.I1[counter],
+                                                                    Factorsombra1[counter],
+                                                                    Fresnel.caudal1[counter],
+                                                                    Fresnel.Eficienciamedia,
+                                                                    Porcentajetubo1[counter]);
+
+        counter++;
     }
 
     public static double[,] CalculoCaracteristicasDelFluido(double[] Taceite, double Caudal1)
@@ -300,12 +313,12 @@ public class Debugger : MonoBehaviour
         return TemperaturasCalcTemp;
     }
 
-    private static void ObtenerDatos()
+    static void ObtenerDatos()
     {
-        string[] FactorsombraCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\Factorsombra.csv");
-        string[] PorcentajetuboCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\Porcentajetubo.csv");
-        string[] TactualFluidoCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\TactualFluido.csv");
-        string[] TactualMetalCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\TactualMetal.csv");
+        string[] FactorsombraCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Factorsombra.csv");
+        string[] PorcentajetuboCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Porcentajetubo.csv");
+        string[] TactualFluidoCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualFluido.csv");
+        string[] TactualMetalCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualMetal.csv");
 
         bool success;
         int longitudBucle = FactorsombraCSV.GetLength(0);   // Importante que todos los ficheros de datos tengan la misma longitud
@@ -330,4 +343,4 @@ public class Debugger : MonoBehaviour
     }
 
 }
-
+*/

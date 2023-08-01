@@ -20,7 +20,7 @@ public class Simulacion : MonoBehaviour
         Debug.Log("Simulacion ha empezado");
         Time.fixedDeltaTime = 0.025f;
 
-        /*
+        
         // Se pone en marcha el sistema:
         Fresnel.Setup();
 
@@ -47,12 +47,12 @@ public class Simulacion : MonoBehaviour
         IrradianciaSalida           = new double[Ntotal];
 
         contador10 = 1;
-        */
+        
     }
 
     void FixedUpdate()
     {
-        /*TemperaturaFluidoSimulacion[0]  = Fresnel.Tentrada1[j]; //  Inicializamos el primer valor (la temperatura de entrada del fluido)
+        TemperaturaFluidoSimulacion[0]  = Fresnel.Tentrada1[j]; //  Inicializamos el primer valor (la temperatura de entrada del fluido)
         IrradianciaSimulacion           = Fresnel.I1[j];        //  Es constante para todo el sistema
         TemperaturaAmbienteSimulacion   = Fresnel.Tambiente1[j];//  Es constante para todo el sistema
         qSimulacion                     = Fresnel.caudal1[j];   //  Es constante para toda la tubería
@@ -76,16 +76,16 @@ public class Simulacion : MonoBehaviour
             TiempoSolarSimulacion = FresnelSupport.CalculoHoraSolar(horaSimulacion, minutoSimulacion, Fresnel.mes1, Fresnel.angulodiario1);
 
             FactorSombraSimulacion = FresnelSupport.eficienciaGeoYSombras(Fresnel.angulodiario1, TiempoSolarSimulacion);
-        }*/
+        }
 
-        /*TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
+        TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
                                                                     TemperaturaFluidoSimulacion,
                                                                     TemperaturaAmbienteSimulacion,
                                                                     IrradianciaSimulacion,
                                                                     FactorSombraSimulacion,
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
-                                                                    PorcentajeTuboSimulacion);*/
+                                                                    PorcentajeTuboSimulacion);
 
         
 

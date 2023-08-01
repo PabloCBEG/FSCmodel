@@ -498,7 +498,7 @@ public static class FresnelSupport
         return result;
     }
 
-    /*public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
+    public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
                                                 double[] TactualFluido_CalcTemp,
                                                 double Tambiente_CalcTemp,
                                                 double I_CalcTemp,
@@ -646,6 +646,134 @@ public static class FresnelSupport
         }
 
         return TemperaturasCalcTemp;
-    }*/
+    }
+
+    public static double[,] CalculoCaracteristicasDelFluido(double[] Taceite, double Caudal1)
+    {
+        // Cálculo de las características físicas y termodinámicas del fluido, así *
+        // como el coeficiente de calor por convección metal-fluido de cada trozo  *
+        // en que se ha dividido el lazo de colectores.                            *
+        // 
+        // El cálculo se hace mediante ecuaciones ajustadas por mínimos cuadrados  *
+        // con datos del fabricante.
+        //                                                                         *
+        // Entradas a la función:                                                  *
+        //    - Temperatura del fluido [ºC]
+        //    - caudal                 [m3/s]
+        //                                                                         *
+        // Salidas de la función:                                                  *
+        //       - densidad pf [kg/m3]                                             *
+        //       - Calor específico Cf [J/(kgºC)] 
+        //       - Conductividad térmica Kf [W/(mºC)]
+        //       - viscosidad mu [mPa*sec]
+        //       - número de Prandtl Hv [adimensional]
+        //       - Coeficiente de transmisión de calor por convección 
+        //         metal-fluido Ht [W/(m2ºC)]
+
+        //Caudal es un escalar, pero para cada muestra en cada momento, tiene un valor
+        //(Tiene sentido, porque el caudal es constante a lo largo de la tuberia)
+        //[ReadOnly] public double Caudal1;
+        int tamanyoT;
+        int l;
+        double[] T, pf, Cf, Hv, Ht;
+        double[,] resultado;
+
+        //*** Por ahora tomamos la primera muestra de Caudal para los calculos;
+        //*** mas adelante desarrollaremos para iterar todo.
+        // Taceite = GetComponent<CalcTemp>().TactualFluido_CalcTemp;
+        // Caudal1 = GetComponent<CalcTemp>().Caudal_CalcTemp;
+        T = Taceite; // Cuidado porque en C# los arrays no se si se copian de un golpe o tengo que ir componente a componente
+        tamanyoT = T.Length;
+
+        // Debug.Log("Longitud de TemperaturaFluido en CalcTemp:"+tamanyoT);
+        pf = new double[tamanyoT];
+        Cf = new double[tamanyoT];
+        Hv = new double[tamanyoT];
+        Ht = new double[tamanyoT];
+        resultado = new double[3, tamanyoT];
+
+        // Aplicación de las ecuaciones
+        for(l = 0; l < tamanyoT; l++)
+        {
+            pf[l] = - 0.002549807548*Math.Pow(T[l], 2)
+                    - 0.202618731192*T[l]
+                    + 1003.917572929273;
+            Cf[l] = 0.000000516739*Math.Pow(T[l], 4)
+                    - 0.000156862606*Math.Pow(T[l], 3)
+                    + 0.027679455287*Math.Pow(T[l], 2)
+                    - 1.626420964922*T[l]
+                    + 4207.403959277281; 
+            Hv[l] = 0.000000001338864e5*Math.Pow(T[l], 4)
+                    - 0.000000778905228e5*Math.Pow(T[l], 3)
+                    + 0.000187251179615e5*Math.Pow(T[l], 2)
+                    - 0.025731157369768e5*T[l]
+                    + 4.108383857418933e5;
+            Ht[l] = Hv[l]*Math.Pow((Caudal1/3600), 0.8);
+
+            resultado[0, l] = pf[l];
+            resultado[1, l] = Cf[l];
+            resultado[2, l] = Ht[l];
+        }
+
+        return resultado;
+    }
+
+    public static double[] CalculoPerdidasMetal(double[] T, double Tambiente)
+    {
+        // Cálculo del coeficiente de pérdidas metal-ambiente por m2 de superficie m
+        // para cada trozo de tubo.
+        //                                                                         *
+        //  Entradas a la función:                                                 *
+        //       - Temperatura metal [ºC]                                          *
+        //       - Temperatura ambiente ºC]                                        *
+        //                                                                         *
+        // Salidas de la función:                                                  *
+        //       - Coeficiente de pérdidas metal-ambiente [W/(m2ºC)]]              *
+        //       - Pérdidas totales en todo el lazo       [KW]                     *
+
+        double Sup; // Superficie metalica susceptible de perder energia en forma de calor
+        int tamanyoT_PerdidasMetal, m;
+        //private double[] T;  // Me parece una barbaridad declararlo en double,
+                                                // pero no estoy seguro del espacio que necesita. Va a ocupar
+                                                // muchisima memoria.
+        double[] Hl;
+
+        //*** Por ahora cogemos solo la primera muestra de Tambiente, luego desarrollaremos
+        //*** el codigo para iterar todas.
+
+        //Tambiente = GetComponent<CalcTemp>().Tambiente_CalcTemp;
+        //tamanyoT_PerdidasMetal = GetComponent<CalcTemp>().TactualPerdidas.Length;
+        //T = GetComponent<CalcTemp>().TactualPerdidas;
+        tamanyoT_PerdidasMetal = T.Length;
+        Hl = new double[tamanyoT_PerdidasMetal];
+
+        Sup = 64*11*0.5;
+
+        // Calculamos por metro cuadrado de espejo para perdidas de tubo             
+        for(m = 0; m < tamanyoT_PerdidasMetal; m++)
+        {
+            Hl[m] = (4.5659247191149893E-1/Sup)*(T[m] - Tambiente) - 0.01062045206593238E+2/Sup;
+            //Debug.Log("Hl: "+Hl[m]);
+        }
+        //Debug.Log("Hl: "+Hl[30]);
+
+        //Hl(i)= 0.040251565842975*(T(i)-Tambiente)+ 3.528725247698581;
+        // 0.018977269846620
+        // 7.129191838532097;0.310522
+        // Metros 0-64 de la tuberia se corresponden al captador;
+        // Metros 65 en adelante, al resto de la tuberia, intercambiador de calor...
+        // Debug.Log("Tamanyo Hl en perdidasMetal:"+Hl.Length);
+        // Debug.Log("Tamanyo T en perdidasMetal:"+T.Length);
+        for(m = 64; m <= 164; m++)
+        {
+            Hl[m] = 0.0140251565842975*(T[m] - Tambiente)*0.09 + 7.328725247698581*0.09;
+        }
+        for(m = 165; m<tamanyoT_PerdidasMetal; m++)
+        {
+            Hl[m] = 0*(T[m] - Tambiente) + 0.290223*5;
+        }
+
+        return Hl;
+    }
 
 }
