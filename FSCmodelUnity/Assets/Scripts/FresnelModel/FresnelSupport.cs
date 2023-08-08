@@ -498,7 +498,7 @@ public static class FresnelSupport
         return result;
     }
 
-    public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
+    /*public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
                                                 double[] TactualFluido_CalcTemp,
                                                 double Tambiente_CalcTemp,
                                                 double I_CalcTemp,
@@ -776,4 +776,5 @@ public static class FresnelSupport
         return Hl;
     }
 
+    */
 }

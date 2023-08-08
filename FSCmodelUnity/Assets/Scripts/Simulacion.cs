@@ -78,7 +78,7 @@ public class Simulacion : MonoBehaviour
             FactorSombraSimulacion = FresnelSupport.eficienciaGeoYSombras(Fresnel.angulodiario1, TiempoSolarSimulacion);
         }
 
-        TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
+        /*TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
                                                                     TemperaturaFluidoSimulacion,
                                                                     TemperaturaAmbienteSimulacion,
                                                                     IrradianciaSimulacion,
@@ -86,7 +86,7 @@ public class Simulacion : MonoBehaviour
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
-
+        */
         
 
         j++;

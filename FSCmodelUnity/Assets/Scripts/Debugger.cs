@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 using System;
 using System.Linq;
@@ -343,4 +343,4 @@ public class Debugger : MonoBehaviour
     }
 
 }
-*/
+
