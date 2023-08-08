@@ -86,14 +86,19 @@ public class Simulacion : MonoBehaviour
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
-        
-        for(int indice = 0; indice < TemperaturasSimulacion.Length; indice++)
+         
+        Debug.Log("TemperaturaMetal antes: "+TemperaturaMetalSimulacion[33]);
+        Debug.Log("TemperaturaFluido antes: "+TemperaturaFluidoSimulacion[33]);
+
+        for(int indice = 0; indice < TemperaturasSimulacion.Length/2; indice++)
         {
+            // El vector conjunto tiene longitud 2xlongitud de uno de los vectores de temperaturas
             TemperaturaMetalSimulacion[indice] = TemperaturasSimulacion[0, indice];
             TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
         }
 
-        Debug.Log("Longitud Temperaturas: "+ TemperaturasSimulacion.GetLength(0));
+        Debug.Log("TemperaturaMetal despues: "+TemperaturaMetalSimulacion[33]);
+        Debug.Log("TemperaturaFluido despues: "+TemperaturaFluidoSimulacion[33]);
 
         j++;
     }

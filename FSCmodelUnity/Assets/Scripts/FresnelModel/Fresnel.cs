@@ -223,7 +223,7 @@ public static class Fresnel
         L = Math.PI*diametrointeriortubo; 
 
         // Areas transversales del fluido[m2]
-        Af = Math.PI*Math.Pow(diametrointeriortubo, 2/4); 
+        Af = Math.PI*Math.Pow(diametrointeriortubo, 2)/4; 
         Am = Math.PI*(Math.Pow(diametroexteriortubo, 2) - Math.Pow(diametrointeriortubo, 2))/4;
 
         // Para Tuberia 2

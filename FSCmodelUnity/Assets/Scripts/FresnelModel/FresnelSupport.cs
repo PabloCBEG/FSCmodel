@@ -518,7 +518,7 @@ public static class FresnelSupport
         double[,] aux2;
         double[,] TemperaturasCalcTemp;
 
-        Debug.Log("Temperatura fluido 33: "+TactualFluido_CalcTemp[33]);
+        // Debug.Log("Temperatura fluido 33: "+TactualFluido_CalcTemp[33]);
 
         Af  = Fresnel.Af;  Af2  = Fresnel.Af2;  Am  = Fresnel.Am;  Am2 = Fresnel.Am2;
         G   = Fresnel.G;   L    = Fresnel.L;    L2  = Fresnel.L2;
@@ -735,13 +735,7 @@ public static class FresnelSupport
 
         double Sup; // Superficie metalica susceptible de perder energia en forma de calor
         int tamanyoT_PerdidasMetal, m;
-        //private double[] T;  // Me parece una barbaridad declararlo en double,
-                                                // pero no estoy seguro del espacio que necesita. Va a ocupar
-                                                // muchisima memoria.
         double[] Hl;
-
-        //*** Por ahora cogemos solo la primera muestra de Tambiente, luego desarrollaremos
-        //*** el codigo para iterar todas.
 
         //Tambiente = GetComponent<CalcTemp>().Tambiente_CalcTemp;
         //tamanyoT_PerdidasMetal = GetComponent<CalcTemp>().TactualPerdidas.Length;
@@ -754,18 +748,11 @@ public static class FresnelSupport
         // Calculamos por metro cuadrado de espejo para perdidas de tubo             
         for(m = 0; m < tamanyoT_PerdidasMetal; m++)
         {
-            Hl[m] = (4.5659247191149893E-1/Sup)*(T[m] - Tambiente) - 0.01062045206593238E+2/Sup;
-            //Debug.Log("Hl: "+Hl[m]);
+            Hl[m] = (0.45659247191149893/Sup)*(T[m] - Tambiente) - 1.062045206593238/Sup;
         }
-        //Debug.Log("Hl: "+Hl[30]);
 
-        //Hl(i)= 0.040251565842975*(T(i)-Tambiente)+ 3.528725247698581;
-        // 0.018977269846620
-        // 7.129191838532097;0.310522
         // Metros 0-64 de la tuberia se corresponden al captador;
         // Metros 65 en adelante, al resto de la tuberia, intercambiador de calor...
-        // Debug.Log("Tamanyo Hl en perdidasMetal:"+Hl.Length);
-        // Debug.Log("Tamanyo T en perdidasMetal:"+T.Length);
         for(m = 64; m <= 164; m++)
         {
             Hl[m] = 0.0140251565842975*(T[m] - Tambiente)*0.09 + 7.328725247698581*0.09;
