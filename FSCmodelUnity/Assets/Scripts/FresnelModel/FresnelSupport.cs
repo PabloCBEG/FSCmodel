@@ -498,7 +498,7 @@ public static class FresnelSupport
         return result;
     }
 
-    /*public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
+    public static double[,] CalculoTemperatura( double[] TactualMetal_CalcTemp,
                                                 double[] TactualFluido_CalcTemp,
                                                 double Tambiente_CalcTemp,
                                                 double I_CalcTemp,
@@ -518,9 +518,11 @@ public static class FresnelSupport
         double[,] aux2;
         double[,] TemperaturasCalcTemp;
 
-        Af  = Fresnel.Af;  Af2 = Fresnel.Af2; Am  = Fresnel.Am;  Am2 = Fresnel.Am2;
-        G   = Fresnel.G;   L = Fresnel.L;     L2 = Fresnel.L2;
-        pm  = Fresnel.pm;  Cm  = Fresnel.Cm;
+        Debug.Log("Temperatura fluido 33: "+TactualFluido_CalcTemp[33]);
+
+        Af  = Fresnel.Af;  Af2  = Fresnel.Af2;  Am  = Fresnel.Am;  Am2 = Fresnel.Am2;
+        G   = Fresnel.G;   L    = Fresnel.L;    L2  = Fresnel.L2;
+        pm  = Fresnel.pm;  Cm   = Fresnel.Cm;
         tint_CalcTemp = Fresnel.tint;
 
         incx = new double[TactualFluido_CalcTemp.Length];
@@ -617,7 +619,7 @@ public static class FresnelSupport
         {
             Tfluido_CalcTemp[n] = TfluidoSinCorregir[n] - (q*tint_CalcTemp)/(Af*incx[n-1])
                                     *(TfluidoSinCorregir[n] - TfluidoSinCorregir[n-1]);
-            Debug.Log("Tfluido captador: "+Tfluido_CalcTemp[n]);
+            // Debug.Log("Tfluido captador: "+Tfluido_CalcTemp[n]);
             TemperaturasCalcTemp[1, n] = Tfluido_CalcTemp[n];
         }
         
@@ -776,5 +778,5 @@ public static class FresnelSupport
         return Hl;
     }
 
-    */
+    
 }

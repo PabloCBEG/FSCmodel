@@ -10,7 +10,7 @@ public class Simulacion : MonoBehaviour
     public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion,
                     TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
                     CaudalSalida, IrradianciaSalida;
-    public double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
+    double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
     int j, i, n, k, Ntotal, contador10;
@@ -78,7 +78,7 @@ public class Simulacion : MonoBehaviour
             FactorSombraSimulacion = FresnelSupport.eficienciaGeoYSombras(Fresnel.angulodiario1, TiempoSolarSimulacion);
         }
 
-        /*TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
+        TemperaturasSimulacion = FresnelSupport.CalculoTemperatura( TemperaturaMetalSimulacion,
                                                                     TemperaturaFluidoSimulacion,
                                                                     TemperaturaAmbienteSimulacion,
                                                                     IrradianciaSimulacion,
@@ -86,8 +86,14 @@ public class Simulacion : MonoBehaviour
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
-        */
         
+        for(int indice = 0; indice < TemperaturasSimulacion.Length; indice++)
+        {
+            TemperaturaMetalSimulacion[indice] = TemperaturasSimulacion[0, indice];
+            TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
+        }
+
+        Debug.Log("Longitud Temperaturas: "+ TemperaturasSimulacion.GetLength(0));
 
         j++;
     }

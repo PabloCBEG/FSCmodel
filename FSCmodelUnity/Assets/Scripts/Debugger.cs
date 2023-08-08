@@ -1,4 +1,4 @@
-
+/*
 using UnityEngine;
 using System;
 using System.Linq;
@@ -11,7 +11,7 @@ public class Debugger : MonoBehaviour
     private static string[,] DatosCSV;
     private static double[] Factorsombra1, Porcentajetubo1, TactualFluido1, TactualMetal1;
     static int counter;
-    static double[,] TemperaturasSimulacion;
+    public static double[,] TemperaturasSimulacion;
     private static string[] FactorsombraCSV, PorcentajetuboCSV, TactualFluidoCSV, TactualMetalCSV;
 
     void Start()
@@ -23,14 +23,14 @@ public class Debugger : MonoBehaviour
 
     void FixedUpdate()
     {
-        TemperaturasSimulacion = CalculoTemperatura( TactualMetal1[counter],
-                                                                    TactualFluido1[counter],
-                                                                    Fresnel.Tambiente1[counter],
-                                                                    Fresnel.I1[counter],
-                                                                    Factorsombra1[counter],
-                                                                    Fresnel.caudal1[counter],
-                                                                    Fresnel.Eficienciamedia,
-                                                                    Porcentajetubo1[counter]);
+        TemperaturasSimulacion = CalculoTemperatura(    TactualMetal1,
+                                                        TactualFluido1,
+                                                        Fresnel.Tambiente1[counter],
+                                                        Fresnel.I1[counter],
+                                                        Factorsombra1[counter],
+                                                        Fresnel.caudal1[counter],
+                                                        Fresnel.Eficienciamedia,
+                                                        Porcentajetubo1[counter]);
 
         counter++;
     }
@@ -282,7 +282,7 @@ public class Debugger : MonoBehaviour
         {
             Tfluido_CalcTemp[n] = TfluidoSinCorregir[n] - (q*tint_CalcTemp)/(Af*incx[n-1])
                                     *(TfluidoSinCorregir[n] - TfluidoSinCorregir[n-1]);
-            Debug.Log("Tfluido captador: "+Tfluido_CalcTemp[n]);
+            // Debug.Log("Tfluido captador: "+Tfluido_CalcTemp[n]);
             TemperaturasCalcTemp[1, n] = Tfluido_CalcTemp[n];
         }
         
@@ -310,15 +310,18 @@ public class Debugger : MonoBehaviour
             TemperaturasCalcTemp[1, n] = Tfluido_CalcTemp[n];
         }
 
+        Debug.Log("Temperatura salida fluido: "+Tfluido_CalcTemp[63]);
+
         return TemperaturasCalcTemp;
     }
 
     static void ObtenerDatos()
     {
-        string[] FactorsombraCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Factorsombra.csv");
-        string[] PorcentajetuboCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Porcentajetubo.csv");
-        string[] TactualFluidoCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualFluido.csv");
-        string[] TactualMetalCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualMetal.csv");
+        
+        string[,] FactorsombraCSV    = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Factorsombra.csv");
+        string[,] PorcentajetuboCSV  = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\Porcentajetubo.csv");
+        string[,] TactualFluidoCSV   = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualFluido.csv");
+        string[,] TactualMetalCSV    = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\DataFiles\TactualMetal.csv");
 
         bool success;
         int longitudBucle = FactorsombraCSV.GetLength(0);   // Importante que todos los ficheros de datos tengan la misma longitud
@@ -331,16 +334,18 @@ public class Debugger : MonoBehaviour
 
         for(int contador = 0; contador < longitudBucle; contador++)
         {
-            success = Double.TryParse(FactorsombraCSV[contador], out Factorsombra1[contador]);      // h
+            success = Double.TryParse(FactorsombraCSV[contador, 0], out Factorsombra1[contador]);      // h
             if(!success) Debug.Log("Error al convertir FactorsombraCSV a formato double, en el indice: " + contador);
-            success = Double.TryParse(PorcentajetuboCSV[contador], out Porcentajetubo1[contador]);    // m3/s
+            success = Double.TryParse(PorcentajetuboCSV[contador, 0], out Porcentajetubo1[contador]);    // m3/s
             if(!success) Debug.Log("Error al convertir PorcentajetuboCSV a formato double, en el indice: " + contador);
-            success = Double.TryParse(TactualFluidoCSV[contador], out TactualFluido1[contador]);  // ºC
+            success = Double.TryParse(TactualFluidoCSV[contador, 0], out TactualFluido1[contador]);  // ºC
             if(!success) Debug.Log("Error al convertir TactualFluidoCSV a formato double, en el indice: " + contador);
-            success = Double.TryParse(TactualMetalCSV[contador], out TactualMetal1[contador]);   // ºC
+            success = Double.TryParse(TactualMetalCSV[contador, 0], out TactualMetal1[contador]);   // ºC
             if(!success) Debug.Log("Error al convertir TactualMetalCSV a formato double, en el indice: " + contador);
         }
     }
 
+
 }
+*/
 

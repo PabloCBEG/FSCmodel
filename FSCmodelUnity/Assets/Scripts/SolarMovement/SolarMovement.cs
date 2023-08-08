@@ -37,7 +37,7 @@ public class SolarMovement : MonoBehaviour
             for(int j = 0; j < fresnelSystem.Mirrors.GetLength(1); j++)
                 fresnelSystem.Mirrors[i, j].transform.rotation = Quaternion.Euler(anguloRotacionEspejo, rotacionYplanta, rotacionZplanta);
 
-            Debug.Log("RotacionEspejo: "+anguloRotacionEspejo);
+            // Debug.Log("RotacionEspejo: "+anguloRotacionEspejo);
 
             anguloRotacionAnterior = anguloRotacionEspejo;
         }
