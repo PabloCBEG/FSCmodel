@@ -7,8 +7,8 @@ using UnityEditor;
 public class Simulacion : MonoBehaviour
 {
     double[,] TemperaturasSimulacion;
-    public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion,
-                    TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
+    public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
+    double[]        TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
                     CaudalSalida, IrradianciaSalida;
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
