@@ -630,8 +630,10 @@ public static class FresnelSupport
         {
             // En realidad la temperatura del metal en el sector de tubería fuera del captador
             // no nos importa, por eso asignamos aquí temperatura constante.
-            Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n];
-            // Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n] + (tint/(pm*Cm*Am2))*(vectorradiacion(65:134)-Hl(65:134)*pi*0.16.*(Tactualmetal(65:134)-Tambiente)*0.1-L2*0.01*Ht(65:134).*(Tactualmetal(65:134)-Tactualfluido(65:134)));
+            // Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n];
+            Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n] + (tint_CalcTemp/(pm*Cm*Am2))
+                                *(vectorradiacion[n] - Hl_local[n]*Math.PI*0.16*(TactualMetal_CalcTemp[n] - Tambiente_CalcTemp)*0.1
+                                - L2*0.01*Ht_local[n]*(TactualMetal_CalcTemp[n] - TactualFluido_CalcTemp[n]));
             TemperaturasCalcTemp[0, n] = Tmetal_CalcTemp[n];
         }
 
