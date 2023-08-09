@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using PackageReference;
 
 // #r "nuget: Plotly.NET, 4.2.0";
 
@@ -89,9 +88,6 @@ public class Simulacion : MonoBehaviour
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
-         
-        // Debug.Log("TemperaturaMetal antes: "+TemperaturaMetalSimulacion[33]);
-        // Debug.Log("TemperaturaFluido antes: "+TemperaturaFluidoSimulacion[33]);
 
         for(int indice = 0; indice < TemperaturasSimulacion.Length/2; indice++)
         {
@@ -99,9 +95,6 @@ public class Simulacion : MonoBehaviour
             TemperaturaMetalSimulacion[indice] = TemperaturasSimulacion[0, indice];
             TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
         }
-
-        // Debug.Log("TemperaturaMetal despues: "+TemperaturaMetalSimulacion[33]);
-        // Debug.Log("TemperaturaFluido despues: "+TemperaturaFluidoSimulacion[33]);
 
         j++;
     }
