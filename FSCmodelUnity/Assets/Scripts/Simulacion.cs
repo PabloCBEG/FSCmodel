@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using PackageReference;
+
+// #r "nuget: Plotly.NET, 4.2.0";
 
 public class Simulacion : MonoBehaviour
 {
