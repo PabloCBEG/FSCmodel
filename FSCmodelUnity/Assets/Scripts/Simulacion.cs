@@ -87,8 +87,8 @@ public class Simulacion : MonoBehaviour
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
          
-        Debug.Log("TemperaturaMetal antes: "+TemperaturaMetalSimulacion[33]);
-        Debug.Log("TemperaturaFluido antes: "+TemperaturaFluidoSimulacion[33]);
+        // Debug.Log("TemperaturaMetal antes: "+TemperaturaMetalSimulacion[33]);
+        // Debug.Log("TemperaturaFluido antes: "+TemperaturaFluidoSimulacion[33]);
 
         for(int indice = 0; indice < TemperaturasSimulacion.Length/2; indice++)
         {
@@ -97,8 +97,8 @@ public class Simulacion : MonoBehaviour
             TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
         }
 
-        Debug.Log("TemperaturaMetal despues: "+TemperaturaMetalSimulacion[33]);
-        Debug.Log("TemperaturaFluido despues: "+TemperaturaFluidoSimulacion[33]);
+        // Debug.Log("TemperaturaMetal despues: "+TemperaturaMetalSimulacion[33]);
+        // Debug.Log("TemperaturaFluido despues: "+TemperaturaFluidoSimulacion[33]);
 
         j++;
     }
