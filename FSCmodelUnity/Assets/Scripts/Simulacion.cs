@@ -21,7 +21,7 @@ public class Simulacion : MonoBehaviour
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
     int j, i, n, k, Ntotal, contador10;
 
-    string filePath = "output.txt";
+    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\output.txt";
 
     void Awake()
     {
