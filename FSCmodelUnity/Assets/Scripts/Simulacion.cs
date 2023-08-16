@@ -107,5 +107,7 @@ public class Simulacion : MonoBehaviour
         File.AppendAllText(filePath, TemperaturaFluidoSimulacion[63].ToString() + Environment.NewLine);
 
         j++;
+
+        if(j > Ntotal) UnityEditor.EditorApplication.isPlaying = false;
     }
 }
