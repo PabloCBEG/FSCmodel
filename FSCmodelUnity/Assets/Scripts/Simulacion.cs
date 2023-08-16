@@ -13,7 +13,7 @@ using UnityEditor;
 public class Simulacion : MonoBehaviour
 {
     double[,] TemperaturasSimulacion;
-    public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
+    double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
     double[]        TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
                     CaudalSalida, IrradianciaSalida;
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
@@ -26,6 +26,11 @@ public class Simulacion : MonoBehaviour
     void Awake()
     {
         Debug.Log("Simulacion ha empezado");
+
+        // Modifica el tiempo fijado de repetición del bucle. Para que tuviera sentido del todo,
+        // habría que ejecutar los cálculos cada 10 iteraciones del bucle (así, el tiempo de
+        // muestreo es realmente 0.25 s, como es en el modelo en matlab). De todas formas, los
+        // resultados son aceptables sin llevar a cabo esta corrección sugerida.
         Time.fixedDeltaTime = 0.025f;
 
         
@@ -104,7 +109,7 @@ public class Simulacion : MonoBehaviour
 
         // Store data for later plotting
         // In each iteration, append the value to the file
-        File.AppendAllText(filePath, TemperaturaFluidoSimulacion[63].ToString() + Environment.NewLine);
+        File.AppendAllText(filePath, TemperaturaFluidoSimulacion[64].ToString() + Environment.NewLine);
 
         j++;
 
