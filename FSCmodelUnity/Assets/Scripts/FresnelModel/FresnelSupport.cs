@@ -626,7 +626,7 @@ public static class FresnelSupport
 
         // Tubería
 
-        Debug.Log("Tamano vector radiacion: "+vectorradiacion.Length);
+        // Debug.Log("Tamano vector radiacion: "+vectorradiacion.Length);
 
         for(n = 64; n < 135; n++)
         {

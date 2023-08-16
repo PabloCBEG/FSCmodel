@@ -1,9 +1,12 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Plotly.NET.CSharp;
+// using CsvHelper;
+// using CsvHelper.Configuration.Attributes;
+// using Plotly.NET.CSharp;
 
 // #r "nuget: Plotly.NET, 4.2.0";
 
@@ -17,6 +20,8 @@ public class Simulacion : MonoBehaviour
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
     int j, i, n, k, Ntotal, contador10;
+
+    string filePath = "output.txt";
 
     void Awake()
     {
@@ -96,6 +101,10 @@ public class Simulacion : MonoBehaviour
             TemperaturaMetalSimulacion[indice] = TemperaturasSimulacion[0, indice];
             TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
         }
+
+        // Store data for later plotting
+        // In each iteration, append the value to the file
+        File.AppendAllText(filePath, TemperaturaFluidoSimulacion[63].ToString() + Environment.NewLine);
 
         j++;
     }
