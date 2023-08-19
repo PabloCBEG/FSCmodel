@@ -21,7 +21,7 @@ public class Simulacion : MonoBehaviour
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
     int j, i, n, k, Ntotal, contador10;
 
-    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\output.txt";
+    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Prueba1.txt";
 
     void Awake()
     {
@@ -52,6 +52,7 @@ public class Simulacion : MonoBehaviour
         k = Fresnel.k1; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
 
         Ntotal = (int)Fresnel.Ntotal;
+        
 
         TemperaturaSalidaFluido     = new double[Ntotal];
         TemperaturaTuberia          = new double[Ntotal];

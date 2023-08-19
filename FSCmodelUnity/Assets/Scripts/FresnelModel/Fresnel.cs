@@ -271,6 +271,8 @@ public static class Fresnel
         int tam = datosOrigen.Length - 1;
         int tamvect = numeroMuestras - 1;
         int n = tamvect;
+        // Debug.Log("tamvect: "+tamvect);
+        // Debug.Log("tam: "+tam);
 
         // primera iteracion fuera del bucle para acumular
         double[] vectorsalida = new double[tam * tamvect];
