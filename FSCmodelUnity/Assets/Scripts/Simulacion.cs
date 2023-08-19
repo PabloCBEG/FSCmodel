@@ -1,13 +1,19 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+// using CsvHelper;
+// using CsvHelper.Configuration.Attributes;
+// using Plotly.NET.CSharp;
+
+// #r "nuget: Plotly.NET, 4.2.0";
 
 public class Simulacion : MonoBehaviour
 {
     double[,] TemperaturasSimulacion;
-    public double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
+    double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
     double[]        TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
                     CaudalSalida, IrradianciaSalida;
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
@@ -15,9 +21,16 @@ public class Simulacion : MonoBehaviour
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
     int j, i, n, k, Ntotal, contador10;
 
+    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Prueba1.txt";
+
     void Awake()
     {
         Debug.Log("Simulacion ha empezado");
+
+        // Modifica el tiempo fijado de repetición del bucle. Para que tuviera sentido del todo,
+        // habría que ejecutar los cálculos cada 10 iteraciones del bucle (así, el tiempo de
+        // muestreo es realmente 0.25 s, como es en el modelo en matlab). De todas formas, los
+        // resultados son aceptables sin llevar a cabo esta corrección sugerida.
         Time.fixedDeltaTime = 0.025f;
 
         
@@ -39,6 +52,7 @@ public class Simulacion : MonoBehaviour
         k = Fresnel.k1; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
 
         Ntotal = (int)Fresnel.Ntotal;
+        
 
         TemperaturaSalidaFluido     = new double[Ntotal];
         TemperaturaTuberia          = new double[Ntotal];
@@ -86,9 +100,6 @@ public class Simulacion : MonoBehaviour
                                                                     qSimulacion,
                                                                     EficienciaMediaSimulacion,
                                                                     PorcentajeTuboSimulacion);
-         
-        Debug.Log("TemperaturaMetal antes: "+TemperaturaMetalSimulacion[33]);
-        Debug.Log("TemperaturaFluido antes: "+TemperaturaFluidoSimulacion[33]);
 
         for(int indice = 0; indice < TemperaturasSimulacion.Length/2; indice++)
         {
@@ -97,9 +108,12 @@ public class Simulacion : MonoBehaviour
             TemperaturaFluidoSimulacion[indice] = TemperaturasSimulacion[1, indice];
         }
 
-        Debug.Log("TemperaturaMetal despues: "+TemperaturaMetalSimulacion[33]);
-        Debug.Log("TemperaturaFluido despues: "+TemperaturaFluidoSimulacion[33]);
+        // Store data for later plotting
+        // In each iteration, append the value to the file
+        File.AppendAllText(filePath, TemperaturaFluidoSimulacion[64].ToString() + Environment.NewLine);
 
         j++;
+
+        if(j > Ntotal) UnityEditor.EditorApplication.isPlaying = false;
     }
 }

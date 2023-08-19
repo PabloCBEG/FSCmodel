@@ -626,7 +626,17 @@ public static class FresnelSupport
 
         // Tubería
 
-        for(n = 64; n < 254; n++)
+        // Debug.Log("Tamano vector radiacion: "+vectorradiacion.Length);
+
+        for(n = 64; n < 135; n++)
+        {
+            // Distinguimos las divisiones del captador de la de la tubería al aire, de la del intercambiador...
+            Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n] + (tint_CalcTemp/(pm*Cm*Am2))
+                                *(vectorradiacion[n] - Hl_local[n]*Math.PI*0.16*(TactualMetal_CalcTemp[n] - Tambiente_CalcTemp)*0.1
+                                - L2*0.01*Ht_local[n]*(TactualMetal_CalcTemp[n] - TactualFluido_CalcTemp[n]));
+            TemperaturasCalcTemp[0, n] = Tmetal_CalcTemp[n];
+        }
+        for(n = 135; n < 254; n++)
         {
             Tmetal_CalcTemp[n] = TactualMetal_CalcTemp[n];
             TemperaturasCalcTemp[0, n] = Tmetal_CalcTemp[n];
