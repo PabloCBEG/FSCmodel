@@ -115,14 +115,11 @@ public static class Fresnel
         // Cada cuantas muestras se actualizan las eficiencias
         //-> tactualizacion marca la frecuencia de actualización de FactorSombra, que aglutina bastantes cálculos
         // sobre la eficiencia geométrica y las sombras posibles en el captador.
-        tactualizacion = Math.Ceiling(Fresnel.tacteficiencias / Fresnel.tint); // *** Revisarlo y corregir
+        tactualizacion = Math.Ceiling(Fresnel.tacteficiencias / Fresnel.tint);
 
         // Cada cuantas muestras hay que leer los datos del fichero.
         //-> Ahora mismo no lo usamos para nada. A expensas de aclarar cuál era el objetivo.
-        incrtiempo = Math.Ceiling(Fresnel.incrementodetiempo / Fresnel.tint); // *** Revisarlo y corregir
-
-        // Para representacion grafica
-        // horarep = 11;   // *** eliminarlo si no sirve
+        incrtiempo = Math.Ceiling(Fresnel.incrementodetiempo / Fresnel.tint);
 
         k1 = 0; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
                 // De todas formas, para realizar eso con éxito, deberíamos parametrizarlo de manera que el tiempo fuese acorde.
@@ -139,8 +136,6 @@ public static class Fresnel
         anyo  = 2009;   //  System.DateTime.Now.Year;
         mes   = 06;     //  System.DateTime.Now.Month;
         dia   = 29;     //  System.DateTime.Now.Day;
-        // hora  = System.DateTime.Now.TimeOfDay.Hours;
-        // minuto = System.DateTime.Now.TimeOfDay.Minutes;
 
         // Tiempo de integración
         dt      = 0.5;
@@ -268,27 +263,27 @@ public static class Fresnel
 
     private static double[] Interpola(int numeroMuestras, double[] datosOrigen)
     {
-        int tam = datosOrigen.Length - 1;
-        int tamvect = numeroMuestras - 1;
+        int tam = datosOrigen.Length;
+        int tamvect = numeroMuestras;
         int n = tamvect;
-        // Debug.Log("tamvect: "+tamvect);
-        // Debug.Log("tam: "+tam);
 
-        // primera iteracion fuera del bucle para acumular
+        // Primera iteracion fuera del bucle para acumular
         double[] vectorsalida = new double[tam * tamvect];
 
         for(int i = 1; i <= tamvect; i++)
         {
             vectorsalida[i - 1] = datosOrigen[0] + ((datosOrigen[1] - datosOrigen[0]) / numeroMuestras) * i;
-            // Debug.Log("VectorSalida: "+vectorsalida[i-1]);
         }
 
         for(int i = 1; i < tam; i++)
         {
             for(int j = 1; j <= tamvect; j++)
             {
-                vectorsalida[n] = datosOrigen[i] + ((datosOrigen[i + 1] - datosOrigen[i]) / numeroMuestras) * j;
-                // Debug.Log("VectorSalida: "+vectorsalida[n]);
+                if(i >= tam - 1)
+                {
+                    vectorsalida[n] = datosOrigen[i - 1] + ((datosOrigen[i] - datosOrigen[i - 1]) / numeroMuestras) * j;
+                }
+                else vectorsalida[n] = datosOrigen[i] + ((datosOrigen[i + 1] - datosOrigen[i]) / numeroMuestras) * j;
                 n++;
             }
         }
