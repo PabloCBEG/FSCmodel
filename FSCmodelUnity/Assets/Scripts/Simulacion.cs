@@ -86,7 +86,7 @@ public class Simulacion : MonoBehaviour
                 minutoSimulacion -= (double)60;
             }
 
-            TiempoSolarSimulacion = FresnelSupport.CalculoHoraSolar(horaSimulacion, minutoSimulacion, Fresnel.mes1, Fresnel.angulodiario1);
+            TiempoSolarSimulacion = FresnelSupport.CalculoHoraSolar(horaSimulacion, minutoSimulacion, Fresnel.mes, Fresnel.angulodiario1);
 
             FactorSombraSimulacion = FresnelSupport.eficienciaGeoYSombras(Fresnel.angulodiario1, TiempoSolarSimulacion);
         }

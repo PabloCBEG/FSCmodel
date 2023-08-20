@@ -15,19 +15,17 @@ public static class Fresnel
     //  Variables para el Setup
     /////////////////////////////////////
     public static int numeroperiodosint;
-    public static double    diajuliano1, angulodiario1, factorsombra1, dia1, mes1, anyo1,
-                            irradiancia1, tambiente1, q1, Ts1;
+    public static double    diajuliano1, angulodiario1, factorsombra1, Ts1;
     public static double tiempomax, Ntotal, tactualizacion;
     public static double[] caudal1, Tentrada1, Tsalida1, I1, Tambiente1, minuto1, hora1;
     public static double[] Tf, Tm;
-    public static string[,] DatosExperimentales;
 
     /////////////////////////////////////
     //  Variables para Inicializacion
     /////////////////////////////////////
     public static double Latitud, oriplanta, Longitud, Eficienciamedia;
     public static int incrementodetiempo, tacteficiencias;
-    public static double tint, dt, reext, diametrointeriortubo, diametroexteriortubo,
+    public static double tint, diametrointeriortubo, diametroexteriortubo,
                         diametrointeriortubo2, diametroexteriortubo2;
     public static float Absortancia, Transmisividad, Reflectividad, Reflectividadsecundaria,
                         factorensuciamiento1, factorensuciamiento2;
@@ -64,8 +62,6 @@ public static class Fresnel
 
         //--3--// Inicialización de las variables.
 
-        mes1 = mes; // *** Esto mejor lo quitamos, directamente eliminamos las variables: anyo1, mes1, dia1;
-                    // puesto que ya contamos con las simples, porque hemos incluido "DatosSistema" aqui.
         diajuliano1 = FresnelSupport.CalculoDiaJuliano(anyo, mes, dia);
 
         angulodiario1 = FresnelSupport.CalculoAnguloDiario(diajuliano1);
@@ -78,8 +74,6 @@ public static class Fresnel
 
         // Aplicamos, para inicializar el parámetro Ts1, la función, al primer elemento de los datos experimentales
         Ts1 = FresnelSupport.CalculoHoraSolar(hora1[0], minuto1[0], mes, angulodiario1);
-
-        factorsombra1 = FresnelSupport.eficienciaGeoYSombras(angulodiario1, Ts1);
 
         Tf = new double[numeroPartesDiscretasSistema];   // Tiene la longitud de las partes de fluido que consideramos en el sistema.
         for(i = 0; i < numeroPartesDiscretasSistema; i++)
@@ -123,7 +117,7 @@ public static class Fresnel
     {
         Debug.Log("Los datos del sistema se han cargado");
         
-        // Introducir fecha correspondiente a los datos que se usaran para la simulacion
+        // Introducir fecha correspondiente a los datos que se usarán para la simulación
         // En realidad estos datos tenemos que cargarlos de un fichero, estas declaraciones no me sirven
 
         // anyo  = 2009;
@@ -151,10 +145,6 @@ public static class Fresnel
         // dia   = 22;
         
 
-
-        // Tiempo de integración
-        dt      = 0.5;
-        reext   = 0.0225;
 
         // ------------------->>PARTE CONFIGURABLE DEL FICHERO>>--------------------
         //__________________________________________________________________________
