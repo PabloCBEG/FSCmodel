@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 public static class Fresnel
 {
-    // Aqui tengo que incluir todo lo previo al bucle de simulacion. Va a ser el Setup del proyecto.
+    // Aquí se incluye todo lo previo al bucle de simulacion. Es el Setup del proyecto.
 
     /////////////////////////////////////
     //  Variables para el Setup
@@ -17,7 +17,7 @@ public static class Fresnel
     public static int numeroperiodosint, k1;
     public static double    diajuliano1, angulodiario1, factorsombra1, dia1, mes1, anyo1,
                             irradiancia1, tambiente1, q1, Ts1;
-    public static double tiempomax, Ntotal, tactualizacion, incrtiempo;
+    public static double tiempomax, Ntotal, tactualizacion;
     public static double[] caudal1, Tentrada1, Tsalida1, I1, Tambiente1, minuto1, hora1;
     public static double[] Tf, Tm;
     public static string[,] DatosExperimentales;
@@ -64,7 +64,7 @@ public static class Fresnel
 
         //--3--// Inicialización de las variables.
 
-        mes1 = mes; // Esto mejor lo quitamos, directamente eliminamos las variables: anyo1, mes1, dia1;
+        mes1 = mes; // *** Esto mejor lo quitamos, directamente eliminamos las variables: anyo1, mes1, dia1;
                     // puesto que ya contamos con las simples, porque hemos incluido "DatosSistema" aqui.
         diajuliano1 = FresnelSupport.CalculoDiaJuliano(anyo, mes, dia);
 
@@ -73,11 +73,10 @@ public static class Fresnel
         minuto1 = new double[hora1.Length];
         for(i = 0; i < hora1.Length; i++)
         {
-            // Rematar este cálculo en busca de los dos decimales, para que tenga sentido? // ***
             minuto1[i] = Math.Floor(Math.Abs(hora1[i] - Math.Truncate(hora1[i]))*60);
         }
 
-        // Aplicamos, para inicializar el parametro Ts1, la funcion, al primer elemento de los datos experimentales
+        // Aplicamos, para inicializar el parámetro Ts1, la función, al primer elemento de los datos experimentales
         Ts1 = FresnelSupport.CalculoHoraSolar(hora1[0], minuto1[0], mes, angulodiario1);
 
         factorsombra1 = FresnelSupport.eficienciaGeoYSombras(angulodiario1, Ts1);
@@ -102,24 +101,20 @@ public static class Fresnel
         //  configuración. También se calcula el tiempo máximo de simulación.
         //-> tiempomax es el número máximo de iteraciones que hará el bucle principal.
         // Es así porque se corresponde con la longitud del archivo de datos (podríamos haber
-        // puesto cualquier otra de las variables que contiene).
+        // puesto cualquier otra de las variables que contiene, aquí usamos "Tentrada1").
         tiempomax = Tentrada1.Length;
         
         //-> Ntotal es el número de iteraciones del bucle principal de simulación,
         // calculado en base a los tiempos que hemos indicado en Inicializacion.
         // Si es mayor que tiempomax, se sobreescribe, pues no tendríamos datos para hacer
-        // la simulación. *** Revisar esto por si tiene sentido anularlo y ceñirse al número de muestras que tenemos.
+        // la simulación.
         Ntotal = Math.Floor(Fresnel.tiemposimulacion / Fresnel.tint);
         if(Ntotal > tiempomax) Ntotal = tiempomax;
 
-        // Cada cuantas muestras se actualizan las eficiencias
+        // Cada cuántas muestras se actualizan las eficiencias
         //-> tactualizacion marca la frecuencia de actualización de FactorSombra, que aglutina bastantes cálculos
         // sobre la eficiencia geométrica y las sombras posibles en el captador.
         tactualizacion = Math.Ceiling(Fresnel.tacteficiencias / Fresnel.tint);
-
-        // Cada cuantas muestras hay que leer los datos del fichero.
-        //-> Ahora mismo no lo usamos para nada. A expensas de aclarar cuál era el objetivo.
-        incrtiempo = Math.Ceiling(Fresnel.incrementodetiempo / Fresnel.tint);
 
         k1 = 0; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
                 // De todas formas, para realizar eso con éxito, deberíamos parametrizarlo de manera que el tiempo fuese acorde.
