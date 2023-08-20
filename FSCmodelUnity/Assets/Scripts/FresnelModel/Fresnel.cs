@@ -125,9 +125,32 @@ public static class Fresnel
         
         // Introducir fecha correspondiente a los datos que se usaran para la simulacion
         // En realidad estos datos tenemos que cargarlos de un fichero, estas declaraciones no me sirven
-        anyo  = 2009;   //  System.DateTime.Now.Year;
-        mes   = 06;     //  System.DateTime.Now.Month;
-        dia   = 29;     //  System.DateTime.Now.Day;
+
+        // anyo  = 2009;
+        // mes   = 06;
+        // dia   = 16;
+        
+        anyo  = 2009;
+        mes   = 06;
+        dia   = 29;
+
+        // anyo  = 2009;
+        // mes   = 07;
+        // dia   = 06;
+
+        // anyo  = 2009;
+        // mes   = 07;
+        // dia   = 10;
+
+        // anyo  = 2009;
+        // mes   = 08;
+        // dia   = 17;
+
+        // anyo  = 2009;
+        // mes   = 08;
+        // dia   = 22;
+        
+
 
         // Tiempo de integración
         dt      = 0.5;
@@ -176,7 +199,7 @@ public static class Fresnel
         Longitud    = -6;
         Latitud     = 37.41;
         oriplanta   = (12 + 3/600 + 11/3600)*Math.PI/180;
-            // ¿Que sentido tiene esta transformacion?
+            // ¿Qué sentido tiene esta transformación?
             // Entiendo que se debe a que la planta tiene desviacion de 
             // 12º 3' 1'' de la direccion sur (pero entonces no entiendo el '11' en la formula, ni el 600 dividiendo)
 
@@ -197,22 +220,22 @@ public static class Fresnel
         //                          CÁLCULOS INICIALES.
         //__________________________________________________________________________
 
-        // recoger las eficiencias de ficheros
+        // Cálculo de las eficiencias
         Eficienciamedia = Absortancia*Reflectividad*Transmisividad*Reflectividadsecundaria
                             *factorensuciamiento1*factorensuciamiento2;
-        // Para Tuberia 1
+        // Para Tubería 1
         // Diametro propio de la tuberia [m]        
         L = Math.PI*diametrointeriortubo; 
 
-        // Areas transversales del fluido[m2]
+        // Áreas transversales del fluido[m2]
         Af = Math.PI*Math.Pow(diametrointeriortubo, 2)/4;
         Am = Math.PI*(Math.Pow(diametroexteriortubo, 2) - Math.Pow(diametrointeriortubo, 2))/4;
 
-        // Para Tuberia 2
+        // Para Tubería 2
         // Diametro propio de la tuberia 2[m]
         L2 = Math.PI*diametrointeriortubo2; 
 
-        // Areas transversales del fluido [m2]
+        // Áreas transversales del fluido [m2]
         Af2 = Math.PI*Math.Pow(diametrointeriortubo2, 2)/4;
         Am2 = Math.PI*(Math.Pow(diametroexteriortubo2, 2) - Math.Pow(diametrointeriortubo2, 2))/4;//(m2)
     }
@@ -254,7 +277,7 @@ public static class Fresnel
         int tamvect = numeroMuestras;
         int n = tamvect;
 
-        // Primera iteracion fuera del bucle para acumular
+        // Primera iteración fuera del bucle para acumular
         double[] vectorsalida = new double[tam * tamvect];
 
         for(int i = 1; i <= tamvect; i++)
