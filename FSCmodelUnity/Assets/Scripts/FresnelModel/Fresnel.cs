@@ -232,20 +232,22 @@ public static class Fresnel
 
     private static void ObtenerDatos()
     {
+        // Lectura del fichero CSV con los datos medidos
         string[,] DatosCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\datosMedidos.csv");
 
         bool success;
         int longitudBucle = DatosCSV.GetLength(0);
 
-        hora1      = new double[DatosCSV.GetLength(0)];
-        caudal1    = new double[DatosCSV.GetLength(0)];
-        Tentrada1  = new double[DatosCSV.GetLength(0)];
-        Tsalida1   = new double[DatosCSV.GetLength(0)];
-        I1         = new double[DatosCSV.GetLength(0)];
-        Tambiente1 = new double[DatosCSV.GetLength(0)];
+        hora1      = new double[longitudBucle];
+        caudal1    = new double[longitudBucle];
+        Tentrada1  = new double[longitudBucle];
+        Tsalida1   = new double[longitudBucle];
+        I1         = new double[longitudBucle];
+        Tambiente1 = new double[longitudBucle];
 
         for(int contador = 0; contador < longitudBucle; contador++)
         {
+            // Convertimos los datos leídos de caracteres a [double] el formato que tenga la variable de destino.
             success = Double.TryParse(DatosCSV[contador, 0], out hora1[contador]);      // h
             if(!success) Debug.Log("Error al convertir hora a formato double, en el indice: " + contador);
             success = Double.TryParse(DatosCSV[contador, 1], out caudal1[contador]);    // m3/s
@@ -281,6 +283,9 @@ public static class Fresnel
             {
                 if(i >= tam - 1)
                 {
+                    // Los dos últimos elementos son particulares, no se pueden interpolar igual.
+                    // Esta operación genera valores dobles... pero sobre el global de los datos,
+                    // no suponen un problema relevante.
                     vectorsalida[n] = datosOrigen[i - 1] + ((datosOrigen[i] - datosOrigen[i - 1]) / numeroMuestras) * j;
                 }
                 else vectorsalida[n] = datosOrigen[i] + ((datosOrigen[i + 1] - datosOrigen[i]) / numeroMuestras) * j;
