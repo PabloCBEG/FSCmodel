@@ -26,7 +26,7 @@ public static class Fresnel
     //  Variables para Inicializacion
     /////////////////////////////////////
     public static double Latitud, oriplanta, Longitud, Eficienciamedia, horacomienzo;
-    public static int incrementodetiempo, tacteficiencias, tiempoderepresentacion;
+    public static int incrementodetiempo, tacteficiencias;
     public static double tint, dt, reext, diametrointeriortubo, diametroexteriortubo,
                         diametrointeriortubo2, diametroexteriortubo2;
     public static float Absortancia, Transmisividad, Reflectividad, Reflectividadsecundaria,
@@ -146,7 +146,6 @@ public static class Fresnel
 
         // Tiempo de simulación en segundos
         tiemposimulacion = 7*3600; 
-        tiempoderepresentacion = 10; //cada minuto
 
         // El tiempo para actualizar las eficiencias en segundos.
         tacteficiencias = 10; 
