@@ -19,7 +19,7 @@ public class Simulacion : MonoBehaviour
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
-    int j, i, n, k, Ntotal, contador10;
+    int j, i, n, Ntotal, contador10;
 
     string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Prueba1.txt";
 
@@ -49,7 +49,6 @@ public class Simulacion : MonoBehaviour
 
         EficienciaMediaSimulacion = Fresnel.Eficienciamedia;
         j = 0;
-        k = Fresnel.k1; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
 
         Ntotal = (int)Fresnel.Ntotal;
         

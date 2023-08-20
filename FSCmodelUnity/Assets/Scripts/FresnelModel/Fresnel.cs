@@ -14,7 +14,7 @@ public static class Fresnel
     /////////////////////////////////////
     //  Variables para el Setup
     /////////////////////////////////////
-    public static int numeroperiodosint, k1;
+    public static int numeroperiodosint;
     public static double    diajuliano1, angulodiario1, factorsombra1, dia1, mes1, anyo1,
                             irradiancia1, tambiente1, q1, Ts1;
     public static double tiempomax, Ntotal, tactualizacion;
@@ -115,9 +115,6 @@ public static class Fresnel
         //-> tactualizacion marca la frecuencia de actualización de FactorSombra, que aglutina bastantes cálculos
         // sobre la eficiencia geométrica y las sombras posibles en el captador.
         tactualizacion = Math.Ceiling(Fresnel.tacteficiencias / Fresnel.tint);
-
-        k1 = 0; // k es un parámetro que determinamos en SetUp, por si quisiéramos empezar en una muestra determinada.
-                // De todas formas, para realizar eso con éxito, deberíamos parametrizarlo de manera que el tiempo fuese acorde.
 
         Debug.Log("Fresnel se ha cargado");
     }
