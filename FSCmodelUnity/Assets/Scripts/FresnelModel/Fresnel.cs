@@ -25,7 +25,7 @@ public static class Fresnel
     /////////////////////////////////////
     //  Variables para Inicializacion
     /////////////////////////////////////
-    public static double Latitud, oriplanta, Longitud, Eficienciamedia, horacomienzo;
+    public static double Latitud, oriplanta, Longitud, Eficienciamedia;
     public static int incrementodetiempo, tacteficiencias;
     public static double tint, dt, reext, diametrointeriortubo, diametroexteriortubo,
                         diametrointeriortubo2, diametroexteriortubo2;
@@ -148,12 +148,8 @@ public static class Fresnel
         tiemposimulacion = 7*3600; 
 
         // El tiempo para actualizar las eficiencias en segundos.
-        tacteficiencias = 10; 
+        tacteficiencias = 10;
 
-        // hora de comienzo en decimal
-        // *** pendiente de corregir, creo que no queremos indicar una hora de comienzo de las medidas, simplemente
-        //    tomaremos la del fichero
-        horacomienzo = 11; // A ver esto de donde sale
 
         // Asignacion de valor de variables dimensionales
 

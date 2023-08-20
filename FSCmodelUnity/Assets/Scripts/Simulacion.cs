@@ -18,7 +18,7 @@ public class Simulacion : MonoBehaviour
                     CaudalSalida, IrradianciaSalida;
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
-                    minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;//, CaudalSimulacion;
+                    minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;
     int j, i, n, Ntotal, contador10;
 
     string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Prueba1.txt";
