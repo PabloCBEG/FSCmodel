@@ -276,23 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1040d7324be5eb049a0b0937f61de612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TemperaturaFluidoSimulacion: []
-  TemperaturaMetalSimulacion: []
-  TemperaturaSalidaFluido: []
-  TemperaturaTuberia: []
-  TemperaturaEntradaFluido: []
-  CaudalSalida: []
-  IrradianciaSalida: []
-  IrradianciaSimulacion: 0
-  PorcentajeTuboSimulacion: 0
-  TiempoSolarSimulacion: 0
-  FactorSombraSimulacion: 0
-  TemperaturaAmbienteSimulacion: 0
-  qSimulacion: 0
-  EficienciaMediaSimulacion: 0
-  minutoSimulacion: 0
-  horaSimulacion: 0
-  RepeticionesSubcicloSimulacion: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

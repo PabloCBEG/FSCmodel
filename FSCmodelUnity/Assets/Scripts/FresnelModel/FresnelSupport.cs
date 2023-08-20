@@ -61,7 +61,7 @@ public static class FresnelSupport
         horaactualoficial = horaactualoficial + minuto_HoraSolar/60;
         Longitudmeridianocentralhuso = 0;   // Meridiano de Greenwich
 
-        // diferencia por posición en minutos
+        // Diferencia por posición en minutos
         diferenciaporposicion = Math.Abs((Fresnel.Longitud - Longitudmeridianocentralhuso)*4);
 
         // diferencia por horario de verano        
@@ -74,9 +74,9 @@ public static class FresnelSupport
         Et = (0.000075+0.001868*Math.Cos(angulodiario_HoraSolar)
             - 0.032077*Math.Sin(angulodiario_HoraSolar)
             - 0.014615*Math.Cos(2*angulodiario_HoraSolar)
-            - 0.04089*Math.Sin(2*angulodiario_HoraSolar))*229.18; //En minutos
+            - 0.04089*Math.Sin(2*angulodiario_HoraSolar))*229.18; // En minutos
 
-        // diferencia total en minutos
+        // Diferencia total en minutos
         diferenciatotal = diferenciapormes + diferenciaporposicion - Et;
 
         return Ts = horaactualoficial - (diferenciatotal/60);
