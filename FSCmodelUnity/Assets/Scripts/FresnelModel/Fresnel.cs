@@ -15,7 +15,7 @@ public static class Fresnel
     //  Variables para el Setup
     /////////////////////////////////////
     public static int numeroperiodosint;
-    public static double    diajuliano1, angulodiario1, factorsombra1, Ts1;
+    public static double diajuliano1, angulodiario1, Ts1;
     public static double tiempomax, Ntotal, tactualizacion;
     public static double[] caudal1, Tentrada1, Tsalida1, I1, Tambiente1, minuto1, hora1;
     public static double[] Tf, Tm;
