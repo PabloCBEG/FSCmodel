@@ -110,6 +110,7 @@ public class Simulacion : MonoBehaviour
         // Store data for later plotting
         // In each iteration, append the value to the file
         File.AppendAllText(filePath, TemperaturaFluidoSimulacion[64].ToString() + Environment.NewLine);
+        // Guardar también los valores de temperatura del metal
 
         j++;
 
