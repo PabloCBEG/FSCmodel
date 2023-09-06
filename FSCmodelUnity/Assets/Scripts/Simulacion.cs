@@ -14,14 +14,14 @@ public class Simulacion : MonoBehaviour
 {
     double[,] TemperaturasSimulacion;
     double[] TemperaturaFluidoSimulacion, TemperaturaMetalSimulacion;
-    double[]        TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
-                    CaudalSalida, IrradianciaSalida;
+    // double[]        TemperaturaSalidaFluido, TemperaturaTuberia, TemperaturaEntradaFluido,
+    //                 CaudalSalida, IrradianciaSalida;
     double   IrradianciaSimulacion, PorcentajeTuboSimulacion, TiempoSolarSimulacion, FactorSombraSimulacion,
                     TemperaturaAmbienteSimulacion, qSimulacion, EficienciaMediaSimulacion,
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;
     int j, i, n, Ntotal, contador10;
 
-    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Prueba1.txt";
+    string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Debugging_data_060923.txt";
 
     void Awake()
     {
@@ -53,11 +53,11 @@ public class Simulacion : MonoBehaviour
         Ntotal = (int)Fresnel.Ntotal;
         
 
-        TemperaturaSalidaFluido     = new double[Ntotal];
-        TemperaturaTuberia          = new double[Ntotal];
-        TemperaturaEntradaFluido    = new double[Ntotal];
-        CaudalSalida                = new double[Ntotal];
-        IrradianciaSalida           = new double[Ntotal];
+        // TemperaturaSalidaFluido     = new double[Ntotal];
+        // TemperaturaTuberia          = new double[Ntotal];
+        // TemperaturaEntradaFluido    = new double[Ntotal];
+        // CaudalSalida                = new double[Ntotal];
+        // IrradianciaSalida           = new double[Ntotal];
 
         contador10 = 1;
         
