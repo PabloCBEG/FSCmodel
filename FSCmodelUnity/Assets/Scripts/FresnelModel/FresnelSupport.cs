@@ -164,7 +164,7 @@ public static class FresnelSupport
         // cálculo de la altura y azimut solar                   
         alturasolar = Math.Asin(Math.Sin(declinacion)*Math.Sin((latitud*Math.PI)/180)
                     + Math.Cos(declinacion)*Math.Cos((latitud*Math.PI)/180)*Math.Cos(anghorario));
-                
+
         azimut      = Math.Acos((Math.Sin(alturasolar)*Math.Sin((latitud*Math.PI)/180)
                     - Math.Sin(declinacion))/(Math.Cos(alturasolar)*Math.Cos((latitud*Math.PI)/180)));
 
@@ -211,7 +211,7 @@ public static class FresnelSupport
         }
 
         modi2d = Math.Sqrt(Math.Pow(i2d[0], 2) + Math.Pow(i2d[1], 2));
-        
+
         for(j = 0; j < i3d.Length; j++)
         {
             i3d[j] = i3d[j]*(1/Math.Sqrt(Math.Pow(i3d[0], 2) + Math.Pow(i3d[1], 2) + Math.Pow(i3d[2], 2)));
@@ -490,7 +490,7 @@ public static class FresnelSupport
     }
 
     private static double[] CrossProduct3D(double[] a, double[] b)
-    {   // Performs cross-product for 3D arrays (not necessarily vectors, that's the point)
+    {   // Performs cross-product for 3D arrays
         double[] result = new double[3];
         result[0] = a[1] * b[2] - a[2] * b[1];
         result[1] = a[2] * b[0] - a[0] * b[2];
@@ -690,10 +690,6 @@ public static class FresnelSupport
         double[] T, pf, Cf, Hv, Ht;
         double[,] resultado;
 
-        //*** Por ahora tomamos la primera muestra de Caudal para los calculos;
-        //*** mas adelante desarrollaremos para iterar todo.
-        // Taceite = GetComponent<CalcTemp>().TactualFluido_CalcTemp;
-        // Caudal1 = GetComponent<CalcTemp>().Caudal_CalcTemp;
         T = Taceite; // Cuidado porque en C# los arrays no se si se copian de un golpe o tengo que ir componente a componente
         tamanyoT = T.Length;
 

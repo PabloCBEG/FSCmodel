@@ -198,9 +198,9 @@ public static class Fresnel
         //   Definición de reflectividad y factores de eficiencia.
         //   Se ha supuesto que si está limpio factorensuciamiento1=0.9 
         //   y factorensuciamiento2=0.9, y si está sucio 0.8 para ambos.
-        Absortancia     = 0.94f;
-        Transmisividad  = 0.96f;
-        Reflectividad   = 0.9f*0.9f;
+            Absortancia     = 0.94f;
+            Transmisividad  = 0.96f;
+            Reflectividad   = 0.9f*0.9f;
 
         Reflectividadsecundaria = 0.77f;
         factorensuciamiento1    = 0.8f;
