@@ -21,6 +21,7 @@ public class Simulacion : MonoBehaviour
                     minutoSimulacion, horaSimulacion, RepeticionesSubcicloSimulacion;
     int j, i, n, Ntotal, contador10;
 
+    // Archivo donde almacenaremos los resultados de la temperatura de salida
     string filePath = @"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\FSCmodel\FSCmodelUnity\Assets\Scripts\Debugging_data_060923.txt";
 
     void Awake()
