@@ -233,7 +233,8 @@ public static class Fresnel
     private static void ObtenerDatos()
     {
         // Lectura del fichero CSV con los datos medidos
-        string[,] DatosCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\datosMedidos.csv");
+        // string[,] DatosCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\OneDrive - UNIVERSIDAD DE SEVILLA\TFG\0_Integracion\Assets\DataFiles\Entrada100709.csv");
+        string[,] DatosCSV = CSVReader.LeerCSV(@"C:\Users\Pablo\Downloads\Entrada100709.csv");
 
         bool success;
         int longitudBucle = DatosCSV.GetLength(0);
